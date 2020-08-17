@@ -10905,6 +10905,6 @@ a.text-dark:focus {
 }
 
 #admin-page {
-  padding-top: 50px !important;
+  padding-top: 0 !important;
 }
 

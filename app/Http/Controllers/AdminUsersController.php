@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
+use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 use function GuzzleHttp\Promise\all;
 use function PHPSTORM_META\map;
@@ -50,8 +52,18 @@ class AdminUsersController extends Controller
         $user->name = $request->name;
         $user->password = bcrypt($request->password) ;
         $user->email = $request->email;
+
         $user->is_active = ($request->status)? $request->status : 0;
         $user->role_id = $request->roles;
+        
+
+        if($file = $request->photo) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['path' => $name]);
+            $user->photo_id = $photo->id;
+        } 
+
         $user->save();
 
         // return redirect()->action('AdminUsersController@index');

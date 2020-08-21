@@ -43,13 +43,13 @@
             {!! Form::checkbox('status', true, null, ['id' => 'status']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('roles', 'Roles') !!}
-            {!! Form::select('roles', ['' => 'Choose Role'] + $roles, null, ['id'=>'roles', 'class' => 'form-control']) !!}
+            {!! Form::label('role_id', 'Roles') !!}
+            {!! Form::select('role_id', ['' => 'Choose Role'] + $roles, null, ['id'=>'roles', 'class' => 'form-control']) !!}
     
         </div>
         <div class="form-group">
             {!! Form::label('photo', 'Upload Photo') !!}
-            {!! Form::file('photo', ['id' => 'photo']) !!}
+            {!! Form::file('photo', ['id' => 'photo', 'class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('password', "Password") !!}

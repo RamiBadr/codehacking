@@ -44,4 +44,22 @@ class User extends Authenticatable
     function photos() {
         return $this->belongsTo(Photo::class, 'photo_id');
     }
+
+    function posts() {
+        return $this->hasMany(Post::class);
+    }
+
+    function isAdmin() {
+        if($this->roles->name == 'admin') {
+            return true;
+        }
+        return false;
+    }
+
+    function isActive() {
+        if($this->is_active) {
+            return true;
+        }
+        return false;
+    }
 }

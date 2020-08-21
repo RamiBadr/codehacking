@@ -1,7 +1,31 @@
 
+/**************** Body *********************/
 
+#admin-page {
+    padding-top: 0;
+}
+
+/**************** page header *********************/
+
+.page-title {
+    margin-bottom: 20px !important;
+}
+
+/**************** delete btn *********************/
+
+.del-btn {
+    display: inline-block;
+}
 
 /****************User Profile  *********************/
+
+.msg {
+    color: #fff !important;
+    font-size: 20px;
+    padding: 10px !important;
+    border-radius: 10px !important;
+}
+
 .user-row {
     margin-bottom: 14px;
 }
@@ -34,4 +58,10 @@
 }
 .toppad
 {margin-top:20px;
+}
+
+/**************** images  *********************/
+
+.img-edit, .img-post {
+    height: 300px !important;
 }

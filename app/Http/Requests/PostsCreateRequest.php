@@ -26,7 +26,7 @@ class PostsCreateRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'content' => 'required',
-            // 'category_id' => 'required'
+            'category_id' => 'required'
         ];
     }
 }

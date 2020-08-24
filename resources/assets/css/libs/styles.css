@@ -57,7 +57,8 @@
     border-top: 0;
 }
 .toppad
-{margin-top:20px;
+{
+    margin-top:20px;
 }
 
 /**************** images  *********************/
@@ -65,3 +66,4 @@
 .img-edit, .img-post {
     height: 300px !important;
 }
+

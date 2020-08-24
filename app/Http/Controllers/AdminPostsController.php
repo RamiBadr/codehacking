@@ -56,7 +56,7 @@ class AdminPostsController extends Controller
 
         $user->posts()->create($input);
 
-        redirect('admin/posts');
+        return redirect('admin/posts');
     }
 
     /**
@@ -78,7 +78,9 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.posts.edit');
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('name', 'id')->all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -88,12 +90,26 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsCreateRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $post = Post::findOrFail($id);
+
+        $user = Auth::user();
+        if($file = $request->photo_id) {
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['path' => $name]);
+            $input['photo_id'] = $photo->id;
+        }
+        
+
+        $user->posts()->whereId($id)->first()->update($input);
+
+        return redirect('admin/posts');
     }
 
-    /**
+    /** 
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -101,6 +117,10 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        
+        $post = Post::find($id);
+        unlink(public_path() . '/' . $post->photo->path);
+        $post->delete();
+
+        return back();
     }
 }

@@ -23,7 +23,8 @@
                         <p class='post-update'><Strong>Last Update:</Strong> {{$post->updated_at->diffForHumans()}}</p>
                         <p class="post-author"><strong>Author:</strong> {{$post->user? $post->user->name : ''}}</p>
                         <a href="{{url("admin/posts/$post->id/edit")}}" class="btn btn-primary">Edit</a>
-                        {!! Form::open(['method'=>'delete', 'action'=>['AdminPostsController@destroy', $post->id]]) !!}
+                        {!! Form::open(['method'=>'delete', 'action'=>['AdminPostsController@destroy', $post->id], 'class' => 'del-btn']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

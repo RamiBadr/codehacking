@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+
 @section('content')
-    <h1>Posts</h1>
+    <h1>Create Categories</h1>
+
+    
 @endsection

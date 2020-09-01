@@ -16,20 +16,10 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        // return $categories;
+        $categories = Category::paginate(5);
         return view('admin.categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.categories.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,4 +81,10 @@ class AdminCategoryController extends Controller
         $category->delete();
         return redirect('admin/categories');
     }
+
+    // public function showCategories() {
+    //     $categories = Category::all();
+
+    //     return view('layouts.blog-post', compact('categories'));
+    // }
 }

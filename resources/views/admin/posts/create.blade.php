@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    
     <h1>Create Posts</h1>
     {!! Form::open(['action' => 'AdminPostsController@store', 'method' => 'post', 'files' => true]) !!}
     <div class="form-group">
@@ -10,7 +9,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('content', "Content") !!}
-        {!! Form::textarea('content', null, ['placeholder' => 'content', 'class' => 'form-control', 'rows' => '5']) !!}
+        {!! Form::textarea('content', null, ['placeholder' => 'content', 'class' => 'form-control my-editor', 'rows' => '5']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('photo_id', 'Upload Photo') !!}
@@ -20,6 +19,7 @@
         {!! Form::label('category_id', 'Category') !!}
         {!! Form::select('category_id', ['' => 'Choose Category'] + $categories, null, ['id'=>'roles', 'class' => 'form-control']) !!}
     </div>
+    
     <div class="form-group">
         {!! Form::submit('Create', ['name' => 'create', 'class' => 'btn btn-primary']) !!}
     </div>
@@ -28,3 +28,6 @@
 @include('includes.form_errors')
 
 @endsection
+
+
+

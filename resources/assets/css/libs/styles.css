@@ -67,3 +67,32 @@
     height: 300px !important;
 }
 
+/**************** dropzone *********************/
+
+button.dz-button {
+    width: 100%;
+    height: 300px;
+}
+
+.dz-filename {
+    display: none;
+}
+
+/**************** comments (blog) *********************/
+
+.nested-comments {
+    margin-top: 40px;
+}
+
+.reply-form {
+    margin-top: 20px;
+}
+
+
+/**************** pagination *********************/
+
+.several-pages {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}

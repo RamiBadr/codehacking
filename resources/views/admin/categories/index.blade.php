@@ -42,7 +42,10 @@
              
              </tbody>
 </table>
+
     </div>
    
-    
+    <div class="several-pages">
+        {{$categories->render()}}
+    </div>  
 @endsection

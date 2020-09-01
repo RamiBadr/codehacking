@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
+    
         <section id='posts'>
             <h1>Posts</h1>
             @if ($posts)
@@ -15,9 +15,13 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h2 class="post-title"><strong>Title:</strong> {{$post->title}}</h2>
+                        <h2 class="post-title" style="display: inline-block"><strong>Title:</strong> {{$post->title}}</h2>
+                        <a href="{{url("post/$post->slug")}}" class='btn btn-success' 
+                            style="font-size: 10px; padding: 5px">View Post</a>
+                        <a href="{{route('comments.show', $post->id)}}" class='btn btn-info' 
+                                style="font-size: 10px; padding: 5px">View Comments</a>    
                         <p class='post-id'><strong>Id:</strong> {{$post->id}}</p>
-                        <p class="post-category"><strong>Category:</strong> {{$post->category? $post->category->name : ''}}</p>
+                        <p class="post-category"><strong>Category:</strong> {{$post->category? $post->category->name : 'Uncategorized'}}</p>
                         <p class='post-content'><strong>Content:</strong> {{Str::words($post->content, 20)}}</p>
                         <p class="post-created"><strong>Created:</strong> {{$post->created_at->diffForHumans()}}</p>
                         <p class='post-update'><Strong>Last Update:</Strong> {{$post->updated_at->diffForHumans()}}</p>
@@ -32,7 +36,9 @@
             <hr>
             @endforeach
             @endif
-            
+            <div class="several-pages">
+                    {{$posts->render()}}
+            </div>
         </section>
   
    

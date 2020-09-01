@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,31 +15,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
-// Route::get('/users', function() {
-    
-// });
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/post/{id}', ['as'=>'home', 'uses'=>'AdminPostsController@post']);
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
+
 Route::group(['middleware' => 'admin'], function() {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
+    Route::get('/admin', 'AdminController@index');
     Route::resource('/admin/users', 'AdminUsersController');
     Route::resource('/admin/posts', 'AdminPostsController');
     Route::resource('/admin/categories', 'AdminCategoryController');
+    Route::resource('/admin/media', 'AdminMediaController');
+    Route::delete('/media/delete', "AdminMediaController@deleteMedia");
+
+    Route::resource('/admin/comments', 'PostCommentsController');
+    Route::resource('/admin/comment/replies', 'CommentRepliesController');
 });
 
-
+Route::group(['middleware' => 'auth'],function() {
+    Route::post('comment/reply', 'CommentRepliesController@store');
+});
 

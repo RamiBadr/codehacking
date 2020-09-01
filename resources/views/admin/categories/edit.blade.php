@@ -3,10 +3,10 @@
 
 @section('content')
     <h1>Edit Category</h1>
-    {!! Form::model('categories', ['method'=>'patch', 'action'=>['AdminCategoryController@update', $category->id]] ) !!}
+    {!! Form::model($category, ['method'=>'patch', 'action'=>['AdminCategoryController@update', $category->id]] ) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}
-            {!! Form::text('name', null, ['placeholder'=>'name', 'class'=>'form-control']) !!}
+            {!! Form::text('name', null, ['class'=>'form-control']) !!}
         </div>
         {!! Form::submit('Edit', ['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}

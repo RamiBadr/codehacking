@@ -24,7 +24,7 @@
         {!! Form::select('category_id', $categories, null, ['id'=>'roles', 'class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Create', ['name' => 'Edit', 'class' => 'btn btn-primary']) !!}
+        {!! Form::submit('Update', ['name' => 'Edit', 'class' => 'btn btn-primary']) !!}
     </div>
 </div>
 

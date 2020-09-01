@@ -2549,8 +2549,16 @@ $(document).ready(function(){
     //});
 
 
+    // Reply Form
 
+    $('.reply-form').hide();
 
+    $(".reply-btn").click(function(e) {
+        var btn = e.target.id;
+        var parent = $("#" + btn).parent().parent().attr('id');
+        console.log(parent);
+         $("#" + parent + ' .media-body .reply-form').slideToggle();
+    });
 
 
 });

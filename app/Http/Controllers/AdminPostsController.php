@@ -7,6 +7,8 @@ use App\Http\Requests\PostsCreateRequest;
 use App\Photo;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +23,8 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $data['post'] = Post::orderBy('id')->paginate(10);
+        $posts = Post::paginate(2);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -55,6 +58,7 @@ class AdminPostsController extends Controller
         }
 
         $user->posts()->create($input);
+        Session::flash('msg', "New post has been ceated");
 
         return redirect('admin/posts');
     }
@@ -104,7 +108,7 @@ class AdminPostsController extends Controller
         }
         
 
-        $user->posts()->whereId($id)->first()->update($input);
+        $post->whereId($id)->first()->update($input);
 
         return redirect('admin/posts');
     }
@@ -122,5 +126,16 @@ class AdminPostsController extends Controller
         $post->delete();
 
         return back();
+    }
+
+    public function post($slug) {
+
+        $post = Post::where('slug', $slug)->first();
+        
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+        $categories = Category::all();
+
+        return view('post', compact('post', 'comments', 'categories'));
     }
 }

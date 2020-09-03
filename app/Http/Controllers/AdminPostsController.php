@@ -138,4 +138,13 @@ class AdminPostsController extends Controller
 
         return view('post', compact('post', 'comments', 'categories'));
     }
+
+    public function search(Request $request) {
+        $text = $request->search_text;
+        $posts = Post::where('title', 'like', '%'.$text.'%')
+                ->orWhere('content', 'like', '%'.$text.'%')
+                ->paginate(3);
+        $categories = Category::all();
+        return view('front.home', compact('posts', 'categories'));
+    }
 }

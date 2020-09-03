@@ -3,14 +3,18 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div>
+        
+            {!! Form::open(['method'=>'post', 'action'=>'AdminPostsController@search']) !!}
+             <div class="input-group">
+                 {!! Form::text('search_text', null, ['class' => 'form-control']) !!}
+
+                    <span class="input-group-btn">
+                        {!! Form::button('<span class="glyphicon glyphicon-search"></span>', 
+                        ['class'=>'btn btn-primary', 'type'=>'submit']) !!}   
+                    </span>
+             </div>
+            {!! Form::close() !!}
+
         <!-- /.input-group -->
     </div>
 
@@ -31,7 +35,7 @@
                         @if ($i == 4)
                         <?php break;?>
                         @endif
-                         <li><a href="#">{{$categories[$i]->name}}</a></li>
+                        <li><a href="{{url("category/" . $categories[$i]->id)}}">{{$categories[$i]->name}}</a></li>
                     @endfor
 
                     @endif

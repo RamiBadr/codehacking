@@ -41,7 +41,9 @@ class AdminCategoryController extends Controller
      */
     public function show($id)
     {
-        return view('admin.categories.show');
+        $posts = Category::findOrFail($id)->posts()->paginate(3);
+        $categories = Category::all();
+        return view('category', compact('posts', 'categories'));
     }
 
     /**
